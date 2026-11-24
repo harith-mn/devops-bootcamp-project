@@ -25,3 +25,24 @@ resource "aws_subnet" "my_private_subnet_1" {
 	name = "devops-private-subnet"
   }
 }
+
+resource "aws_internet_gateway" "my_igw" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  tags = {
+    name = "devops-igw"
+  }
+}
+
+resource "aws_eip" "my_eip_nat" {
+  domain = "vpc"
+}
+
+resource "aws_nat_gateway" "my_ngw" {
+  allocation_id = aws_eip.my_eip_nat.id
+  subnet_id = aws_subnet.my_private_subnet_1.id
+
+  tags = {
+    name = "devops-ngw"
+  }
+}
