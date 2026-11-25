@@ -53,5 +53,5 @@ resource "aws_instance" "my_server_3" {
 
 resource "aws_eip" "my_eip_web" {
   instance = aws_instance.my_server_1.id
-  domain = "vpc"
+  domain   = "vpc"
 }

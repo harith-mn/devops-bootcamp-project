@@ -40,13 +40,13 @@ resource "aws_eip" "my_eip_nat" {
 
 resource "aws_nat_gateway" "my_ngw" {
   allocation_id = aws_eip.my_eip_nat.id
-  subnet_id = aws_subnet.my_public_subnet_1.id
+  subnet_id     = aws_subnet.my_public_subnet_1.id
 
   tags = {
     Name = "devops-ngw"
   }
 
-  depends_on = [ aws_internet_gateway.my_igw ]
+  depends_on = [aws_internet_gateway.my_igw]
 }
 
 resource "aws_route_table" "my_route_table_public" {
@@ -66,23 +66,23 @@ resource "aws_route_table" "my_route_table_private" {
 }
 
 resource "aws_route" "my_route_public" {
-  route_table_id = aws_route_table.my_route_table_public.id
+  route_table_id         = aws_route_table.my_route_table_public.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id = aws_internet_gateway.my_igw.id
+  gateway_id             = aws_internet_gateway.my_igw.id
 }
 
 resource "aws_route" "my_route_private" {
-  route_table_id = aws_route_table.my_route_table_private.id
+  route_table_id         = aws_route_table.my_route_table_private.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id = aws_nat_gateway.my_ngw.id
+  nat_gateway_id         = aws_nat_gateway.my_ngw.id
 }
 
 resource "aws_route_table_association" "my_link_public_1" {
-  subnet_id = aws_subnet.my_public_subnet_1.id
+  subnet_id      = aws_subnet.my_public_subnet_1.id
   route_table_id = aws_route_table.my_route_table_public.id
 }
 
 resource "aws_route_table_association" "my_link_private_1" {
-  subnet_id = aws_subnet.my_private_subnet_1.id
+  subnet_id      = aws_subnet.my_private_subnet_1.id
   route_table_id = aws_route_table.my_route_table_private.id
 }
