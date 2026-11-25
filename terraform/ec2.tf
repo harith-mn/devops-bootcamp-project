@@ -21,7 +21,7 @@ resource "aws_instance" "my_server_1" {
   iam_instance_profile   = data.aws_iam_instance_profile.my_ssm_profile.name
 
   tags = {
-	name = "web-server"
+    Name = "web-server"
   }
 }
 
@@ -34,7 +34,7 @@ resource "aws_instance" "my_server_2" {
   iam_instance_profile   = data.aws_iam_instance_profile.my_ssm_profile.name
 
   tags = {
-	name = "ansible-controller"
+    Name = "ansible-controller"
   }
 }
 
@@ -47,7 +47,7 @@ resource "aws_instance" "my_server_3" {
   iam_instance_profile   = data.aws_iam_instance_profile.my_ssm_profile.name
 
   tags = {
-	name = "monitoring-server"
+    Name = "monitoring-server"
   }
 }
 

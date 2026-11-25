@@ -3,7 +3,7 @@ resource "aws_security_group" "my_public_sg" {
   vpc_id = aws_vpc.my_vpc.id
 
   tags = {
-	name = "devops-public-sg"
+    Name = "devops-public-sg"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_security_group" "my_private_sg" {
   vpc_id = aws_vpc.my_vpc.id
 
   tags = {
-	name = "devops-private-sg"
+    Name = "devops-private-sg"
   }
 }
 
