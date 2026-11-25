@@ -46,6 +46,11 @@ resource "aws_instance" "my_server_3" {
   vpc_security_group_ids = [aws_security_group.my_private_sg.id]
   iam_instance_profile   = data.aws_iam_instance_profile.my_ssm_profile.name
 
+  root_block_device {
+    volume_size = 20
+    volume_type = "gp3"
+  }
+
   tags = {
     Name = "monitoring-server"
   }
